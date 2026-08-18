@@ -5,6 +5,8 @@ builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
 
+builder.Services.AddSession();
+
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
@@ -24,6 +26,7 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}")
     .WithStaticAssets();
+app.UseSession();
 
 
 app.Run();

@@ -18,6 +18,26 @@ public class HomeController : Controller
         return View();
     }
 
+    [HttpPost]
+public IActionResult Login(string username, string password)
+{
+    BD BD = new BD();
+    Usuario usuario = BD.ValidarUsuario(username, password);
+
+    if (usuario == null)
+    {
+        ViewBag.Error = "Usuario o contraseña incorrectos";
+        return View();
+    }
+
+    HttpContext.Session.SetString("Username", usuario.Username);
+    HttpContext.Session.SetString("Nombre", usuario.Nombre);
+    HttpContext.Session.SetString("Apellido", usuario.Apellido);
+    HttpContext.Session.SetString("TipoUsuario", usuario.TipoUsuario);
+
+    return RedirectToAction("Bienvenida");
+}
+
     public IActionResult Privacy()
     {
         return View();
