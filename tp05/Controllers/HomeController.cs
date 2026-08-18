@@ -19,24 +19,43 @@ public class HomeController : Controller
     }
 
     [HttpPost]
-public IActionResult Login(string username, string password)
-{
-    BD BD = new BD();
-    Usuario usuario = BD.ValidarUsuario(username, password);
 
-    if (usuario == null)
+    public IActionResult Login(string username, string password)
     {
-        ViewBag.Error = "Usuario o contraseña incorrectos";
-        return View();
+        BD BD = new BD();
+        Usuario usuario = BD.ValidarUsuario(username, password);
+
+        if (usuario == null)
+        {
+            ViewBag.Error = "Usuario o contraseña incorrectos";
+            return View();
+        }
+
+        HttpContext.Session.SetString("Username", usuario.Username);
+        HttpContext.Session.SetString("Nombre", usuario.Nombre);
+        HttpContext.Session.SetString("Apellido", usuario.Apellido);
+        HttpContext.Session.SetString("TipoUsuario", usuario.TipoUsuario);
+
+        return RedirectToAction("Bienvenida");
     }
 
-    HttpContext.Session.SetString("Username", usuario.Username);
-    HttpContext.Session.SetString("Nombre", usuario.Nombre);
-    HttpContext.Session.SetString("Apellido", usuario.Apellido);
-    HttpContext.Session.SetString("TipoUsuario", usuario.TipoUsuario);
+    public IActionResult Bienvenida()
+    {
+        string username = HttpContext.Session.GetString("Username");
 
-    return RedirectToAction("Bienvenida");
-}
+        //si no hay un usuario logueado en la sesion, redirigir al login
+        if (string.IsNullOrEmpty(username))
+        {
+            return RedirectToAction("Login"); 
+        }
+
+        ViewBag.Username = username;
+        ViewBag.Nombre = HttpContext.Session.GetString("Nombre");
+        ViewBag.Apellido = HttpContext.Session.GetString("Apellido");
+        ViewBag.TipoUsuario = HttpContext.Session.GetString("TipoUsuario");
+
+        return View();
+    }
 
     public IActionResult Privacy()
     {
