@@ -9,9 +9,10 @@ public class Usuario
     public string Password { get; set; }
     public string TipoUsuario { get; set; }
 
-    public Usuario(int id, string nombre, string apellido, string password, string tipoUsuario)
+    public Usuario(int id, string username, string nombre, string apellido, string password, string tipoUsuario)
     {
         Id = id;
+        Username = username;
         Nombre = nombre;
         Apellido = apellido;
         Password = password;
