@@ -39,6 +39,49 @@ public class HomeController : Controller
         return RedirectToAction("Bienvenida");
     }
 
+    [HttpPost]
+
+    public IActionResult CrearCuenta(string username, string nombre, string apellido, string password, string TipoUsuario)
+    {
+        BD BD = new BD();
+        Usuario usuario = BD.ValidarUsername(username);
+
+        if (usuario != null)
+        {
+            ViewBag.Error = "Error! ya existe un usuario con ese nombre de usuario";
+            return View();
+        }
+
+        BD.NuevoUsuario(username, nombre, apellido, password, TipoUsuario);
+
+        HttpContext.Session.SetString("Username", username);
+        HttpContext.Session.SetString("Nombre", nombre);
+        HttpContext.Session.SetString("Apellido", apellido);
+        HttpContext.Session.SetString("TipoUsuario", TipoUsuario);
+
+        return RedirectToAction("Bienvenida");
+    }
+
+    [HttpPost]
+
+    public IActionResult LogOut()
+    {
+        HttpContext.Session.Clear();
+        return RedirectToAction("Index");
+    }
+
+    public IActionResult CrearCuentaHtml()
+    {
+        return View("CrearCuenta");
+    }
+
+    public IActionResult LoginHtml()
+    {
+        return View("Login");
+    }
+
+    [HttpGet]
+
     public IActionResult Bienvenida()
     {
         string username = HttpContext.Session.GetString("Username");
@@ -46,10 +89,9 @@ public class HomeController : Controller
         //si no hay un usuario logueado en la sesion, redirigir al login
         if (string.IsNullOrEmpty(username))
         {
-            return RedirectToAction("Login"); 
+            return RedirectToAction("LoginHtml"); 
         }
 
-        ViewBag.Username = username;
         ViewBag.Nombre = HttpContext.Session.GetString("Nombre");
         ViewBag.Apellido = HttpContext.Session.GetString("Apellido");
         ViewBag.TipoUsuario = HttpContext.Session.GetString("TipoUsuario");

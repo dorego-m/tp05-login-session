@@ -1,9 +1,16 @@
 ﻿@{
 
     ViewData["Title"] = "Home Page";
+    var nombre = ViewBag.Nombre as string;
+    var apellido = ViewBag.Apellido as string;
+    var tipoUsuario = ViewBag.TipoUsuario as string;
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h1 class="display-4">Bienvenido, @tipoUsuario @nombre @apellido</h1>
+    
+    <form asp-action="Logout" method="post">
+    <button type="submit">Log Out</button>
+    </form>
+
 </div>

@@ -4,6 +4,22 @@
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h1 class="display-4">crear cuenta</h1>
+
+    <form asp-action="CrearCuenta" method="post">
+    <input type="text" name="username" value="" placeholder="Username" required/>
+    <input type="text" name="nombre" value="" placeholder="Nombre" required/>
+    <input type="text" name="apellido" value="" placeholder="Apellido" required/>
+    <input type="password" name="password" value="" placeholder="Crear contraseña" required/>
+    <select name="TipoUsuario" placeholder="Tipo de usuario" required>
+    <option value="Alumno">Alumno</option>
+    <option value="Docente">Docente</option>
+    <option value="Coordinador">Coordinador</option>
+    <option value="Padre">Padre</option>
+    </select>
+    <button type="submit">crear cuenta</button>
+    </form>
+
+    <a asp-controller="Home" asp-action="LoginHtml">Ya tenes cuenta? Inicia sesion aqui</a>
+
 </div>

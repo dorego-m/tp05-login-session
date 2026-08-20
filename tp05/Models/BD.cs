@@ -8,7 +8,7 @@ public class BD
 {
        private string _connectionString =
 @"Server=localhost;
-Database=Album Virtual;
+Database=usuarios;
 Integrated Security=True;
 TrustServerCertificate=True;";
 
@@ -39,7 +39,17 @@ public Usuario ValidarUsuario(string username, string password)
 
 }
 
+public Usuario ValidarUsername(string username)
+{
+    using (var connection = new SqlConnection(_connectionString))
+    {
+        connection.Open();
+        var query = "SELECT * FROM Usuarios WHERE Username = @Username";
+        var usuario = connection.QueryFirstOrDefault<Usuario>(query, new { Username = username });
+        return usuario;
+    }
 
+}
 
 
 
