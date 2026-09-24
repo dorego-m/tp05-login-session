@@ -8,24 +8,43 @@
     <h1 class="display-4">crear cuenta</h1>
 
     <form asp-action="CrearCuenta" method="post" id="form">
+    <div class="parteinput">
+    <label for="username" id="usernameLabel"></label>
     <input type="text" name="username" value="" id="username" placeholder="Username" required/>
+    </div>
+    <div class="parteinput">
+    <label for="nombre" id="nombreLabel"></label>
     <input type="text" name="nombre" value="" id="nombre" placeholder="Nombre" required/>
+</div>
+    <div class="parteinput">
+    <label for="apellido" id="apellidoLabel"></label>
     <input type="text" name="apellido" value="" id="apellido" placeholder="Apellido" required/>
+</div>
+    <div class="parteinput">
+    <label for="password" id="passwordLabel"></label>
     <input type="password" name="password" value="" id="contraseña" placeholder="Crear contraseña" required/>
+</div>
+<div class="parteinput">
     <select name="TipoUsuario" placeholder="Tipo de usuario" required>
     <option value="Alumno">Alumno</option>
     <option value="Docente">Docente</option>
     <option value="Coordinador">Coordinador</option>
     <option value="Padre">Padre</option>
     </select>
-    <button type="button" id="btnSubmit">crear cuenta</button>
+</div>
+<div class="parteinput">
+    <button type="button" id="btnSubmit" onclick="AttemptSignUp()">crear cuenta</button>
+    </div>
     </form>
 
     @if (!string.IsNullOrEmpty(error))
     {
         <p style="color:red">@error</p>
     }
-
-    <a asp-controller="Home" asp-action="LoginHtml">Ya tenes cuenta? Inicia sesion aqui</a>
+    <br>
+    <br>
+    <br>
+    <br>
+    <a asp-controller="Home" asp-action="LoginHtml" >Ya tenes cuenta? Inicia sesion aqui</a>
 
 </div>

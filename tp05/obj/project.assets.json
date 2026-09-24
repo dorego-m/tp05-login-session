@@ -2000,11 +2000,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\50155748\\Downloads\\Nueva carpeta\\tp05-login-session\\tp05\\tp05.csproj",
+      "projectUniqueName": "C:\\Users\\50155748\\Downloads\\tp05-login-session\\tp05\\tp05.csproj",
       "projectName": "tp05",
-      "projectPath": "C:\\Users\\50155748\\Downloads\\Nueva carpeta\\tp05-login-session\\tp05\\tp05.csproj",
+      "projectPath": "C:\\Users\\50155748\\Downloads\\tp05-login-session\\tp05\\tp05.csproj",
       "packagesPath": "C:\\Users\\50155748\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\50155748\\Downloads\\Nueva carpeta\\tp05-login-session\\tp05\\obj\\",
+      "outputPath": "C:\\Users\\50155748\\Downloads\\tp05-login-session\\tp05\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
